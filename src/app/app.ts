@@ -68,9 +68,6 @@ export class App {
     this.tableau.set(this._tableau.map(t => [...t]));
   }
 
-  /* Tiempo */
-
-  /* cl */
   private startTime(): void {
     if (this._timerSub) { return; }
     this._timerSub = timer(1000, 1000)
@@ -80,16 +77,13 @@ export class App {
         if (this._timeSeconds() >= MAX_TIME) { this.newGame(); }
       });
   }
-  /* cl */
+
   private stopTime(): void { this._timerSub?.unsubscribe(); this._timerSub = null; }
 
-  /* cl */
   private resetTime(): void { this.stopTime(); this._timeSeconds.set(0); }
 
-  /* cl */
   private pad(n: number): string { return n < 10 ? `0${n}` : `${n}`; }
 
-  /* cl */
   private dealTableau(): void {
     this._stock = [...this._deck.cards];
     this._waste = [];
@@ -107,14 +101,12 @@ export class App {
     }
   }
 
-  /* cl */
   private delay(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   /* Ciclo de juego */
 
-  /* cl */
   public async newGame(): Promise<void> {
     this.loading.set(true);
     this.resetTime();
@@ -126,7 +118,7 @@ export class App {
 
     await this._deck.initCards();
     await this._deck.shuffle();
-    await this.delay(1000);          // spinner breve, como antes
+    await this.delay(1000); // spinner breve, como antes
     this.dealTableau();
     this.sync();
     this.loading.set(false);
@@ -134,7 +126,6 @@ export class App {
 
   /* INTERACCIÓN */
 
-  /* cl */
   public verifyAvailability(card: PlayingCard, from: CardSet, cardIndexFrom: number, indexFrom?: number): void {
     this._game.from = from;
     this._game.indexFrom = indexFrom !== undefined ? indexFrom : this._game.indexFrom;
@@ -155,7 +146,6 @@ export class App {
     if (move) { this.tryMovement(); }
   }
 
-  /* cl */
   public undo(): void {
     if (!this._moves.length) { return; }
     const m = this._moves[this._moves.length - 1];
@@ -168,7 +158,6 @@ export class App {
     this.tryUndoMovement();
   }
 
-  /* cl */
   private tryMovement(): void {
     const { from, to } = this._game;
     const handlers: movementHandlers = {
@@ -190,7 +179,6 @@ export class App {
     this.sync();
   }
 
-  /* cl */
   private tryUndoMovement(): void {
     const { from, to } = this._game;
     const handlers: movementHandlers = {
@@ -467,7 +455,6 @@ export class App {
     return true;
   }
 
-  /* cl */
   private checkGameStatus(): void {
     const { to, indexTo } = this._game;
     if (this._firstMove) { this._firstMove = false; this.startTime(); }
@@ -479,7 +466,6 @@ export class App {
     }
   }
 
-  /* cl */
   private endGame(): void {
     this.stopTime();
     this.gameService.setBestTime(this.time());
@@ -487,7 +473,6 @@ export class App {
     this.gameOver.set(true);
   }
 
-  /* cl */
   public move(from: CardSet, to: CardSet, cardIndexFrom?: number): void {
     this._game.from = from;
     this._game.to = to;
@@ -495,15 +480,12 @@ export class App {
     this.tryMovement();
   }
 
-  /* cl */
   public dragstart(from: Exclude<CardSet, 'stock'>, indexFrom: number, cardIndexFrom: number): void {
     this._game.from = from; this._game.indexFrom = indexFrom; this._game.cardIndexFrom = cardIndexFrom;
   }
 
-  /* cl */
   public dragover(event: Event): void { event.preventDefault(); }
 
-  /* cl */
   public drop(event: Event, to: Exclude<CardSet, 'stock' | 'waste'>, indexTo: number): void {
     event.preventDefault();
     this._game.to = to; this._game.indexTo = indexTo;
