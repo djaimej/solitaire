@@ -1,0 +1,14 @@
+<div class="card" [ngClass]="{'front': card.view, 'back': !card.view}" (dblclick)="dblclick()" (click)="click()">
+  @if (card.view) {
+  <span [class]="card.color">{{card.name}} <svg-icon class="icon-em" [src]="frontIconSrc"></svg-icon></span>
+  <div class="icons">
+    <svg-icon class="icon" [ngClass]="{'icon-sm': card.name !== 'A' && card.name !== 'X'}"
+      [src]="frontIconSrc"></svg-icon>
+    @if (card.name !== 'A' && card.name !== 'X') {
+    <svg-icon class="icon-em" [src]="frontIconSrc"></svg-icon>
+    }
+  </div>
+  } @else {
+  <svg-icon class="icon" [src]="backIconSrc"></svg-icon>
+  }
+</div>
