@@ -16,11 +16,13 @@
         @for (card of stock(); track $index) {
         <app-card [card]="card" (click)="move('stock', 'waste', $index)"></app-card>
         }
-        @if (!stock.length && waste.length) { <div class="empty-symbol" (click)="move('waste', 'stock')"></div> }
+        @if (!stock().length && waste().length) {
+        <div class="empty-symbol" (click)="move('waste', 'stock')"></div>
+        }
       </div>
       <div class="waste">
         @for (card of waste(); track $index) {
-        <app-card [card]="card" (dragstart)="dragstart('waste', 0, $index)" [draggable]="$index === waste.length - 1"
+        <app-card [card]="card" (dragstart)="dragstart('waste', 0, $index)" [draggable]="$index === waste().length - 1"
           (onDblClick)="verifyAvailability(card, 'waste', $index)"></app-card>
         }
       </div>
