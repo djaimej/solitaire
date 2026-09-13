@@ -1,39 +1,23 @@
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AfterContentInit, Component, EventEmitter, Input, Output } from '@angular/core';
-import { PlayingCard } from '@models/clases/playing-card';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { PlayingCard } from '@models/clases/playing-card';
 
 @Component({
   selector: 'app-card',
   imports: [CommonModule, AngularSvgIconModule],
-  standalone: true,
   templateUrl: './card.html',
-  styleUrl: './card.scss'
+  styleUrl: './card.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Card implements AfterContentInit {
-  public frontIconSrc: string;
-  public backIconSrc: string;
-  @Input() public card: PlayingCard;
-  @Output() public onDblClick = new EventEmitter();
-  @Output() public onClick = new EventEmitter();
+export class Card {
+  @Input({ required: true }) public card!: PlayingCard;
+  @Output() public onDblClick = new EventEmitter<void>();
+  @Output() public onClick = new EventEmitter<void>();
 
-  constructor() {
-    this.card = new PlayingCard('X', 'Joker');
-    this.frontIconSrc = `assets/icons/Joker.svg`;
-    this.backIconSrc = `assets/icons/Cadmus.svg`;
-  }
+  public get frontIconSrc(): string { return `assets/icons/${this.card.suit}.svg`; }
+  public readonly backIconSrc = 'assets/icons/Cadmus.svg';
 
-  public ngAfterContentInit(): void {
-    this.frontIconSrc = `assets/icons/${this.card.suit}.svg`;
-  }
-
-  public dblclick(): void {
-    if (!this.card.view) { return; }
-    this.onDblClick.emit();
-  }
-
-  public click(): void {
-    if (this.card.view) { return; }
-    this.onClick.emit();
-  }
+  public dblclick(): void { if (!this.card.view) { return; } this.onDblClick.emit(); }
+  public click(): void { if (this.card.view) { return; } this.onClick.emit(); }
 }

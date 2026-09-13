@@ -2,31 +2,31 @@
   <section class="menu">
     <div class="menu-set">
       <app-button (onClick)="newGame()">Nuevo</app-button>
-      <app-button (onClick)="undo()" [variant]="'ghost'" [disabled]="gameOver">Deshacer</app-button>
+      <app-button (onClick)="undo()" [variant]="'ghost'" [disabled]="gameOver()">Deshacer</app-button>
     </div>
     <hr>
     <div class="menu-set">
-      <p class="information-label">{{time}}</p>
-      <strong class="information-label">{{bestTime}}</strong>
+      <p class="information-label">{{ time() }}</p>
+      <strong class="information-label">{{ bestTime() }}</strong>
     </div>
   </section>
   <section class="board">
     <div class="stock-row">
       <div class="stock">
-        @for (card of stock; track $index) {
+        @for (card of stock(); track $index) {
         <app-card [card]="card" (click)="move('stock', 'waste', $index)"></app-card>
         }
         @if (!stock.length && waste.length) { <div class="empty-symbol" (click)="move('waste', 'stock')"></div> }
       </div>
       <div class="waste">
-        @for (card of waste; track $index) {
+        @for (card of waste(); track $index) {
         <app-card [card]="card" (dragstart)="dragstart('waste', 0, $index)" [draggable]="$index === waste.length - 1"
           (onDblClick)="verifyAvailability(card, 'waste', $index)"></app-card>
         }
       </div>
       <div class="space"></div>
       <div class="foundations">
-        @for (foundation of foundations; track $index; let foundationIndex = $index) {
+        @for (foundation of foundations(); track $index; let foundationIndex = $index) {
         <div class="foundation" (drop)="drop($event, 'foundation', foundationIndex)" (dragover)="dragover($event)"
           [ngClass]="{'empty': !foundation.length}">
           @for (card of foundation; track $index; let cardIndex = $index) {
@@ -38,11 +38,12 @@
       </div>
     </div>
     <div class="tableau">
-      @for (cards of tableau; track $index; let tableauIndex = $index) {
+      @for (cards of tableau(); track $index; let tableauIndex = $index) {
       <div class="slot" (drop)="drop($event, 'tableau', tableauIndex)" (dragover)="dragover($event)">
         @for (card of cards; track $index; let cardIndex = $index) {
-        <app-card [card]="card" [ngClass]="{'displaced': cardIndex >= 1}" (dragstart)="dragstart('tableau', tableauIndex, cardIndex)"
-          [draggable]="card.view" (onDblClick)="verifyAvailability(card, 'tableau', cardIndex, tableauIndex)">
+        <app-card [card]="card" [ngClass]="{'displaced': cardIndex >= 1}"
+          (dragstart)="dragstart('tableau', tableauIndex, cardIndex)" [draggable]="card.view"
+          (onDblClick)="verifyAvailability(card, 'tableau', cardIndex, tableauIndex)">
         </app-card>
         }
         @if (!cards.length) {
@@ -51,13 +52,13 @@
       </div>
       }
     </div>
-    @if (gameOver) {
+    @if (gameOver()) {
     <p class="game-over">¡¡JUEGO TERMINADO!!</p>
     }
     @if (loading()) {
-      <div class="spinner-container">
-        <div class="spinner"></div>
-      </div>
+    <div class="spinner-container">
+      <div class="spinner"></div>
+    </div>
     }
   </section>
 </main>

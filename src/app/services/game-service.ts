@@ -1,32 +1,10 @@
 import { Injectable } from '@angular/core';
-import { IMovement } from '@models/interfaces/game.interface';
 import { TIME_FORMAT, TIME_REGEX } from '@shared/constants/game';
-import { Subject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
-  private _attemptedMovement: Subject<IMovement>;
-
-  constructor() {
-    this._attemptedMovement = new Subject<IMovement>();
-  }
-
-  /**
-   * @deprecated
-   */
-  public getAttemptedMovement(): Observable<IMovement> {
-    return this._attemptedMovement.asObservable();
-  }
-
-  /**
-   * @deprecated
-   */
-  public setAttemptedMovement(move: IMovement): void {
-    this._attemptedMovement.next(move);
-  }
-
   public getBestTime(): string {
     return localStorage.getItem('~best-time') || TIME_FORMAT;
   }
