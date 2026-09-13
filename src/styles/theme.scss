@@ -165,23 +165,23 @@ $clamp-50: clamp($size-48, $size-vw50, $size-52);
 
   --red: #FF0000;
   --falu: #801A1A;
-  --dark-red: #4A0000;
+  --dark-red: #3c0000;
   --orange: #FA9248;
   --dandelion: #FFDE75;
   --inchworm: #BCE051;
   --green: #00FF00;
   --verse: #1a801a;
-  --dark-green: #004A00;
+  --dark-green: #003c00;
   --caribbean-green: #37D4AD;
   --robins-egg-blue: #44CECE;
   --blue-green: #2799B2;
   --blue: #0000FF;
   --patrick: #1A1A80;
-  --dark-blue: #00004A;
+  --dark-blue: #00003c;
   --purple-heart: #633DA2;
   --pink-flamingo: #EA82EB;
   --razzmatazz: #E23274;
-  
+
   --border-width: 2.5px;
   --border: 2.5px #000000 solid;
   --border-radius: #{$size-03};
@@ -234,7 +234,7 @@ $clamp-50: clamp($size-48, $size-vw50, $size-52);
   --size-48: #{$clamp-48};
   --size-49: #{$clamp-49};
   --size-50: #{$clamp-50};
-  
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
