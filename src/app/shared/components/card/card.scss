@@ -1,75 +1,75 @@
 .card {
-    position: relative;
-    width: var(--size-50);
-    height: calc(var(--size-50) * 1.7);
-    border-radius: var(--border-radius);
-    user-select: none;
-    padding: var(--border-radius);
+  position: relative;
+  width: var(--size-50);
+  height: calc(var(--size-50) * 1.7);
+  border-radius: var(--border-radius);
+  user-select: none;
+  padding: var(--border-radius);
 
-    &.front {
-        display: grid;
-        grid-template-rows: min-content 80%;
-        background-color: var(--white);
-        border: var(--border-width) solid var(--black);
-        cursor: grab;
+  &.front {
+    display: grid;
+    grid-template-rows: min-content 80%;
+    background-color: var(--white);
+    border: var(--border-width) solid var(--black);
+    cursor: grab;
 
-        span {
-            width: 100%;
-            display: flex;
-            font-size: var(--size-12);
-            font-family: Inter, sans-serif;
-            line-height: 1em;
-            font-weight: bold;
-            justify-content: space-between;
-            align-items: flex-end;
+    span {
+      width: 100%;
+      display: flex;
+      font-size: var(--size-12);
+      font-family: Inter, sans-serif;
+      line-height: 1em;
+      font-weight: bold;
+      justify-content: space-between;
+      align-items: flex-end;
 
-            &.black {
-                color: var(--black);
-            }
+      &.black {
+        color: var(--black);
+      }
 
-            &.red {
-                color: var(--red);
-            }
-        }
+      &.red {
+        color: var(--red);
+      }
     }
+  }
 
-    &.back {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        justify-content: center;
-        background-color: var(--black);
-        border: var(--border-width) solid var(--white);
-        cursor: pointer;
+  &.back {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--black);
+    border: var(--border-width) solid var(--white);
+    cursor: pointer;
+  }
+
+  .icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--border-width);
+  }
+
+
+  .icon {
+    svg {
+      width: var(--size-25);
+      height: var(--size-25);
     }
+  }
 
-    .icons {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: var(--border-width);
+  .icon-sm {
+    svg {
+      width: var(--size-20);
+      height: var(--size-20);
     }
+  }
 
-
-    .icon {
-        svg {
-            width: var(--size-25);
-            height: var(--size-25);
-        }
+  .icon-em {
+    svg {
+      width: 1em;
+      height: 1em;
     }
-
-    .icon-sm {
-        svg {
-            width: var(--size-20);
-            height: var(--size-20);
-        }
-    }
-
-    .icon-em {
-        svg {
-            width: 1em;
-            height: 1em;
-        }
-    }
+  }
 }

@@ -118,7 +118,7 @@ export class App {
 
     await this._deck.initCards();
     await this._deck.shuffle();
-    await this.delay(1000); // spinner breve, como antes
+    await this.delay(1000);
     this.dealTableau();
     this.sync();
     this.loading.set(false);
