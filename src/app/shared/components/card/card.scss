@@ -1,10 +1,9 @@
 .card {
   position: relative;
-  width: var(--size-50);
-  height: calc(var(--size-50) * 1.7);
+  min-width: var(--size-33);
+  min-height: var(--size-50);
   border-radius: var(--border-radius);
   user-select: none;
-  padding: var(--border-radius);
 
   &.front {
     display: grid;
@@ -16,12 +15,11 @@
     span {
       width: 100%;
       display: flex;
-      font-size: var(--size-12);
       font-family: Inter, sans-serif;
       line-height: 1em;
-      font-weight: bold;
+      font-weight: 900;
       justify-content: space-between;
-      align-items: flex-end;
+      align-items: center;
 
       &.black {
         color: var(--black);
@@ -43,33 +41,110 @@
     cursor: pointer;
   }
 
+  .icon-em {
+    svg {
+      width: 1em;
+      height: 1em;
+    }
+  }
+
   .icons {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: var(--border-width);
-  }
 
-
-  .icon {
-    svg {
-      width: var(--size-25);
-      height: var(--size-25);
+    .extra-icons {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: var(--border-width);
     }
   }
+}
 
-  .icon-sm {
-    svg {
-      width: var(--size-20);
-      height: var(--size-20);
+/* RESPONSIVE */
+
+@media only screen and (min-width: 800px) {
+  .card {
+    padding-left: var(--border-radius);
+    padding-right: var(--border-radius);
+    width: var(--size-50);
+
+    .icon {
+      svg {
+        width: var(--size-25);
+      }
+    }
+
+    .icon-sm {
+      svg {
+        width: var(--size-20);
+      }
+    }
+
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .card {
+    padding-left: var(--border-width);
+    padding-right: var(--border-width);
+    width: 11vw;
+
+    .icon {
+      svg {
+        width: var(--size-20);
+      }
+    }
+
+    .icon-sm {
+      svg {
+        width: var(--size-15);
+      }
     }
   }
+}
 
-  .icon-em {
-    svg {
-      width: 1em;
-      height: 1em;
+@media only screen and (min-height: 600px) {
+  .card {
+    padding-top: var(--border-radius);
+    padding-bottom: var(--border-radius);
+    height: calc(var(--size-50) * 1.7);
+    font-size: var(--size-12);
+
+    .icon {
+      svg {
+        height: var(--size-25);
+      }
+    }
+
+    .icon-sm {
+      svg {
+        height: var(--size-20);
+      }
+    }
+  }
+}
+
+@media only screen and (max-height: 600px) {
+  .card {
+    padding-top: var(--border-width);
+    padding-bottom: var(--border-width);
+    height: 25vh;
+    font-size: var(--size-10);
+
+    .icon {
+      svg {
+        height: var(--size-20);
+      }
+    }
+
+    .icon-sm {
+      svg {
+        height: var(--size-15);
+      }
     }
   }
 }

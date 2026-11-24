@@ -184,7 +184,7 @@ $clamp-50: clamp($size-48, $size-vw50, $size-52);
 
   --border-width: 2.5px;
   --border: 2.5px #000000 solid;
-  --border-radius: #{$size-03};
+  --border-radius: #{$clamp-03};
 
   --size-03: #{$clamp-03};
   --size-04: #{$clamp-04};

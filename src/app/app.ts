@@ -124,7 +124,7 @@ export class App {
     this.loading.set(false);
   }
 
-  /* INTERACCIÓN */
+  /* Interacción */
 
   public verifyAvailability(card: PlayingCard, from: CardSet, cardIndexFrom: number, indexFrom?: number): void {
     this._game.from = from;

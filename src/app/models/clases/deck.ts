@@ -25,7 +25,7 @@ export class Deck {
       [this._cards[i], this._cards[j]] = [this._cards[j], this._cards[i]];
     }
     // Reducir la probabilidad de que el juego quede sin solución.
-    [[50, 49], [48, 46], [45, 42], [41, 37], [36, 31], [30, 24], [29, 25]].forEach(([i, j]) => {
+    [[45, 42], [41, 37], [36, 31], [29, 25]].forEach(([i, j]) => {
       if (this._cards[i].order < this._cards[j].order) {
         [this._cards[i], this._cards[j]] = [this._cards[j], this._cards[i]];
       }
